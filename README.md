@@ -18,7 +18,12 @@ removes some stuff from `/usr/local/include/node/openssl/archs`. Tweak it for us
 You need docker-squash installed as these images are removing stuff from official node alpine images so to get real
 disk size savings you need to squash images. `docker-squash` seems to be better choice than built-in squashing.
 
-See: https://github.com/jwilder/docker-squash
+See: ~~https://github.com/jwilder/docker-squash~~
+https://github.com/goldmann/docker-squash
+
+> I am sorry for keeping invalid link here for so long.
+
+Version 2.x will be itself dockerized.
 
 ## Usage
 
