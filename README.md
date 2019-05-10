@@ -2,11 +2,14 @@
 
 Ultra small docker images producer with node support. Optionally add ffmpeg and youtube-dl.
 
+> These stats are for 12.2.0 version, see: https://hub.docker.com/r/dzek69/nodemin/tags
+> They may be both smaller or bigger depending on the node/ffmpeg/youtube-dl version
+
 | Name | Compressed/transfer size | Disk Size |
 |------|--------------------------:|----------:|
-| node | 23MB | 45 MB |
-| ffmpeg | 37MB | 68 MB |
-| youtube | 50MB | 108 MB |
+| node | 20MB | 53.5 MB |
+| ffmpeg | 44MB | 123 MB |
+| youtube | 57MB | 164 MB |
 
 ## Disclaimer
 
