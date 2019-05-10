@@ -1,6 +1,6 @@
 ARG VERSION
 
-FROM dzek69/noderasp:${VERSION}-ffmpeg
+FROM dzek69/nodemin:${VERSION}-ffmpeg
 
 RUN echo "Hi" && \
     #

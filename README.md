@@ -10,35 +10,67 @@ Ultra small docker images producer with node support. Optionally add ffmpeg and 
 
 ## Disclaimer
 
-This is made for personal use with raspberry pi. It may produce broken images on other processor architectures, as it
-removes some stuff from `/usr/local/include/node/openssl/archs`. Tweak it for use with x86/x64 architecture.
+This is made for personal use with linux x64.
+Version 1.x was intended for ARM/Raspberry Pi.
+
+It may produce broken images on other processor architectures than x64, as it removes some stuff from
+`/usr/local/include/node/openssl/archs`. Tweak it for use with other architectures.
 
 ## Requirements
 
-You need docker-squash installed as these images are removing stuff from official node alpine images so to get real
-disk size savings you need to squash images. `docker-squash` seems to be better choice than built-in squashing.
+### When building directly:
 
-See: ~~https://github.com/jwilder/docker-squash~~
-https://github.com/goldmann/docker-squash
+- docker
+- docker-squash: https://github.com/goldmann/docker-squash
+- python, pip - required by docker-squash
 
-> I am sorry for keeping invalid link here for so long.
+### When building within docker
 
-Version 2.x will be itself dockerized.
+- docker
 
 ## Usage
+
+### When building directly:
 
 All builds are run through `make` file, containing bash script.
 
 ```bash
 MODULE=node SQUASH=true NODE_VERSION=10.0.0 VERSION=1.0.0 ./make
+# Will produce dzek69/nodemin:1.0.0-node image based on node:10.0.0-alpine
+
+MODULE=ffmpeg NODE_VERSION=10.0.0 VERSION=1.0.0 ./make
+# Will produce dzek69/nodemin:1.0.0-ffmpeg image based on dzek69/nodemin:1.0.0-node
+
+MODULE=youtube NODE_VERSION=10.0.0 VERSION=1.0.0 ./make
+# Will produce dzek69/nodemin:1.0.0-youtube image based on dzek69/nodemin:1.0.0-ffmpeg
 ```
 
-It requires all these environmental variables set.
+### When building within docker:
+
+First you can build the builder:
+```bash
+docker build . -t builder
+```
+
+Then you can build the images:
+
+```bash
+docker run -e NODE_VERSION=11.10.0 -e SQUASH=true -e VERSION=11.10.0 -e MODULE=node -v /var/run/docker.sock:/var/run/docker.sock -it builder ./make
+# Will produce dzek69/nodemin:11.10.0-node image based on node:11.10.0-alpine
+
+docker run -e NODE_VERSION=11.10.0 -e VERSION=11.10.0 -e MODULE=ffmpeg -v /var/run/docker.sock:/var/run/docker.sock -it builder ./make
+# Will produce dzek69/nodemin:11.10.0-ffmpeg image based on dzek69/nodemin:11.10.0-node
+
+docker run -e NODE_VERSION=11.10.0 -e VERSION=11.10.0 -e MODULE=youtube -v /var/run/docker.sock:/var/run/docker.sock -it builder ./make
+# Will produce dzek69/nodemin:11.10.0-youtube image based on dzek69/nodemin:11.10.0-ffmpeg
+```
+
+## Environmental variables explained:
 
 - `MODULE` is one of three values: `node`, `ffmpeg`, `youtube`.
     - `node` uses `node-alpine` image and just strips all not-needed-to-run-node-app files
     - `ffmpeg` uses image built with `MODULE=node` and adds pre-build ffmpeg to that (currently uses mirrored `ffmpeg`
-       as official was terribly slow to download)
+       as official is terribly slow to download, at least from my location)
     - `youtube` uses image built with `MODULE=ffmpeg` and adds `youtube-dl` (and `python` required by `youtube-dl`)
 
 - `SQUASH` if set to any value - built image will be squashed. Use only for `node` to save disk space if multiple
@@ -49,13 +81,14 @@ only for base `node`, but currently `make` script will stop anyway if it's not p
 
 - `VERSION` is a version tag which new image should be tagged with.
 
-Currently all images uses `dzek69/noderasp` prefix as image name. It is hardcoded.
+Currently all images uses `dzek69/nodemin` prefix as image name. It is hardcoded. Some other stuff shouldn't be
+hardcoded as well.
 
 ## How to use these images
 
-These images are published on public Docker Hub as `dzek69/noderasp`
+These images are published on public Docker Hub as `dzek69/nodemin`
 
-https://hub.docker.com/r/dzek69/noderasp/tags/
+https://hub.docker.com/r/dzek69/nodemin/tags/
 
 Example of how use this images, you may want to tweak things a little to match your needs.
 
@@ -75,7 +108,7 @@ RUN yarn --production
 RUN rm * || true
 
 # Switch to mini image
-FROM dzek69/noderasp:11.1.0.0-node
+FROM dzek69/nodemin:11.1.0.0-node
 
 # Copy ready to use file from previously built temporary image
 COPY --from=builder /home/node/app /home/node/app

@@ -1,9 +1,0 @@
-ARG VERSION
-
-FROM dzek69/noderasp:${VERSION}-node
-
-RUN echo "Hi" && \
-    wget http://dzek.mooo.com/pub/ffmpeg-release-armhf-32bit-static.tar.xz -O ffmpeg.tar.xz && \
-    tar xvf ffmpeg.tar.xz && \
-    mv ffmpeg-4.1-armhf-32bit-static/ffmpeg /usr/local/bin/ffmpeg && \
-    rm -r ffmpeg-4.1-armhf-32bit-static ffmpeg.tar.xz
