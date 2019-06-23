@@ -2,9 +2,11 @@ ARG VERSION
 
 FROM dzek69/nodemin:${VERSION}-ffmpeg
 
+COPY youtube/etc/periodic/hourly /etc/periodic/hourly
+
 RUN echo "Hi" && \
     #
     # Install stuff
+    chmod 755 /etc/periodic/hourly/* && \
     apk add --no-cache python && \
-    wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl && \
-    chmod a+rx /usr/local/bin/youtube-dl
+    /etc/periodic/hourly/update-youtube-dl

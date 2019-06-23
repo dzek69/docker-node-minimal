@@ -19,6 +19,12 @@ Version 1.x was intended for ARM/Raspberry Pi.
 It may produce broken images on other processor architectures than x64, as it removes some stuff from
 `/usr/local/include/node/openssl/archs`. Tweak it for use with other architectures.
 
+## Why & alternatives
+
+I needed images as small as possible to fit many many projects on Raspberry. Using [scratch-node](https://github.com/astefanutti/scratch-node)
+was a pain back then. `scratch-node` seems to work just fine now and produces smaller images, but I wanted to keep
+system tools (wget, cron, etc). 
+
 ## Requirements
 
 ### When building directly:
