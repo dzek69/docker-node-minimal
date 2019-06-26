@@ -3,7 +3,4 @@ ARG VERSION
 FROM dzek69/nodemin:${VERSION}-node
 
 RUN echo "Hi" && \
-    wget https://jacek-nowacki.net/pub/ffmpeg-amd64.4.1.3.tar.xz -O ffmpeg.tar.xz && \
-    tar xvf ffmpeg.tar.xz && \
-    mv ffmpeg-4.1.3-amd64-static/ffmpeg /usr/local/bin/ffmpeg && \
-    rm -r ffmpeg-4.1.3-amd64-static ffmpeg.tar.xz
+    apk add --no-cache ffmpeg
