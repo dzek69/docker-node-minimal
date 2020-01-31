@@ -4,9 +4,12 @@ FROM dzek69/nodemin:${VERSION}-ffmpeg
 
 COPY youtube/etc/periodic/hourly /etc/periodic/hourly
 
+ENV PATH "$PATH:/home/node/bin"
+
 RUN echo "Hi" && \
     #
     # Install stuff
+    mkdir -p /home/node/bin && \
     chmod 755 /etc/periodic/hourly/* && \
     apk add --no-cache python && \
     /etc/periodic/hourly/update-youtube-dl

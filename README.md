@@ -64,14 +64,14 @@ docker build . -t builder
 Then you can build the images:
 
 ```bash
-docker run -e NODE_VERSION=11.10.0 -e SQUASH=true -e VERSION=11.10.0 -e MODULE=node -v /var/run/docker.sock:/var/run/docker.sock -it builder ./make
-# Will produce dzek69/nodemin:11.10.0-node image based on node:11.10.0-alpine
+docker run -e NODE_VERSION=12.14.1 -e SQUASH=true -e VERSION=12.14.1 -e MODULE=node -v /var/run/docker.sock:/var/run/docker.sock -it builder ./make
+# Will produce dzek69/nodemin:12.14.1-node image based on node:12.14.1-alpine
 
-docker run -e NODE_VERSION=11.10.0 -e VERSION=11.10.0 -e MODULE=ffmpeg -v /var/run/docker.sock:/var/run/docker.sock -it builder ./make
-# Will produce dzek69/nodemin:11.10.0-ffmpeg image based on dzek69/nodemin:11.10.0-node
+docker run -e NODE_VERSION=12.14.1 -e VERSION=12.14.1 -e MODULE=ffmpeg -v /var/run/docker.sock:/var/run/docker.sock -it builder ./make
+# Will produce dzek69/nodemin:12.14.1-ffmpeg image based on dzek69/nodemin:12.14.1-node
 
-docker run -e NODE_VERSION=11.10.0 -e VERSION=11.10.0 -e MODULE=youtube -v /var/run/docker.sock:/var/run/docker.sock -it builder ./make
-# Will produce dzek69/nodemin:11.10.0-youtube image based on dzek69/nodemin:11.10.0-ffmpeg
+docker run -e NODE_VERSION=12.14.1 -e VERSION=12.14.1 -e MODULE=youtube -v /var/run/docker.sock:/var/run/docker.sock -it builder ./make
+# Will produce dzek69/nodemin:12.14.1-youtube image based on dzek69/nodemin:12.14.1-ffmpeg
 ```
 
 ## Environmental variables explained:
