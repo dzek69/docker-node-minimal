@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-wget https://yt-dl.org/downloads/latest/youtube-dl -O /home/node/bin/youtube-dl && chmod a+rx /home/node/bin/youtube-dl
-chown node /home/node/bin/youtube-dl
