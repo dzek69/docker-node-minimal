@@ -19,17 +19,12 @@ RUN echo "Hi" && \
     /usr/local/include/node/openssl/archs/BSD-x86_64 \
     /usr/local/include/node/openssl/archs/VC-WIN32 \
     /usr/local/include/node/openssl/archs/VC-WIN64A \
-    /usr/local/include/node/openssl/archs/aix-gcc \
-    /usr/local/include/node/openssl/archs/aix64-gcc \
     /usr/local/include/node/openssl/archs/darwin-i386-cc \
     /usr/local/include/node/openssl/archs/darwin64-x86_64-cc \
     /usr/local/include/node/openssl/archs/linux-aarch64 \
     /usr/local/include/node/openssl/archs/linux-armv4 \
     /usr/local/include/node/openssl/archs/linux-elf \
-    /usr/local/include/node/openssl/archs/linux-ppc \
-    /usr/local/include/node/openssl/archs/linux-ppc64 \
     /usr/local/include/node/openssl/archs/linux-ppc64le \
-    /usr/local/include/node/openssl/archs/linux-x32 \
     /usr/local/include/node/openssl/archs/linux32-s390x \
     /usr/local/include/node/openssl/archs/linux64-s390x \
     /usr/local/include/node/openssl/archs/solaris-x86-gcc \

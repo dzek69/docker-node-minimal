@@ -1,9 +1,9 @@
 # docker-node-minimal
 
-Ultra small docker images producer with node support. Optionally add ffmpeg and youtube-dl.
+Ultra small docker images producer with node support. Optionally add ffmpeg and yt-dlp.
 
 > These stats are for 12.2.0 version, see: https://hub.docker.com/r/dzek69/nodemin/tags
-> They may be both smaller or bigger depending on the node/ffmpeg/youtube-dl version
+> They may be both smaller or bigger depending on the node/ffmpeg/yt-dlp version
 
 | Name | Compressed/transfer size | Disk Size |
 |------|--------------------------:|----------:|
@@ -64,14 +64,14 @@ docker build . -t builder
 Then you can build the images:
 
 ```bash
-docker run -e NODE_VERSION=12.14.1 -e SQUASH=true -e VERSION=12.14.1 -e MODULE=node -v /var/run/docker.sock:/var/run/docker.sock -it builder ./make
-# Will produce dzek69/nodemin:12.14.1-node image based on node:12.14.1-alpine
+docker run -e NODE_VERSION=19.2.0 -e SQUASH=true -e VERSION=19.2.0 -e MODULE=node -v /var/run/docker.sock:/var/run/docker.sock -it builder ./make
+# Will produce dzek69/nodemin:19.2.0-node image based on node:19.2.0-alpine
 
-docker run -e NODE_VERSION=12.14.1 -e VERSION=12.14.1 -e MODULE=ffmpeg -v /var/run/docker.sock:/var/run/docker.sock -it builder ./make
-# Will produce dzek69/nodemin:12.14.1-ffmpeg image based on dzek69/nodemin:12.14.1-node
+docker run -e NODE_VERSION=19.2.0 -e VERSION=19.2.0 -e MODULE=ffmpeg -v /var/run/docker.sock:/var/run/docker.sock -it builder ./make
+# Will produce dzek69/nodemin:19.2.0-ffmpeg image based on dzek69/nodemin:19.2.0-node
 
-docker run -e NODE_VERSION=12.14.1 -e VERSION=12.14.1 -e MODULE=youtube -v /var/run/docker.sock:/var/run/docker.sock -it builder ./make
-# Will produce dzek69/nodemin:12.14.1-youtube image based on dzek69/nodemin:12.14.1-ffmpeg
+docker run -e NODE_VERSION=19.2.0 -e VERSION=19.2.0 -e MODULE=youtube -v /var/run/docker.sock:/var/run/docker.sock -it builder ./make
+# Will produce dzek69/nodemin:19.2.0-youtube image based on dzek69/nodemin:19.2.0-ffmpeg
 ```
 
 ## Environmental variables explained:
@@ -80,7 +80,7 @@ docker run -e NODE_VERSION=12.14.1 -e VERSION=12.14.1 -e MODULE=youtube -v /var/
     - `node` uses `node-alpine` image and just strips all not-needed-to-run-node-app files
     - `ffmpeg` uses image built with `MODULE=node` and adds pre-build ffmpeg to that (currently uses mirrored `ffmpeg`
        as official is terribly slow to download, at least from my location)
-    - `youtube` uses image built with `MODULE=ffmpeg` and adds `youtube-dl` (and `python` required by `youtube-dl`)
+    - `youtube` uses image built with `MODULE=ffmpeg` and adds `yt-dlp` (and `python` required by `yt-dlp`)
 
 - `SQUASH` if set to any value - built image will be squashed. Use only for `node` to save disk space if multiple
 images with add-ons based on `node` images will be used.

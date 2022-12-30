@@ -2,14 +2,13 @@ ARG VERSION
 
 FROM dzek69/nodemin:${VERSION}-ffmpeg
 
-COPY youtube/etc/periodic/hourly /etc/periodic/hourly
-
 ENV PATH "$PATH:/home/node/bin"
 
 RUN echo "Hi" && \
     #
     # Install stuff
     mkdir -p /home/node/bin && \
-    chmod 755 /etc/periodic/hourly/* && \
-    apk add --no-cache python && \
-    /etc/periodic/hourly/update-youtube-dl
+    apk add --no-cache python3 && \
+    wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O /home/node/bin/yt-dlp && chmod a+rx /home/node/bin/yt-dlp && \
+    chown -R node /home/node/bin
+
