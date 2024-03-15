@@ -11,24 +11,8 @@ RUN echo "Hi" && \
     /usr/local/lib/node_modules/ \
     # APK sources
     /usr/share/apk \
-    # some keys
-    /root/.gnupg \
     # apk cache
     /var/cache/apk \
-    # some node stuff
-    /usr/local/include/node/openssl/archs/BSD-x86_64 \
-    /usr/local/include/node/openssl/archs/VC-WIN32 \
-    /usr/local/include/node/openssl/archs/VC-WIN64A \
-    /usr/local/include/node/openssl/archs/darwin-i386-cc \
-    /usr/local/include/node/openssl/archs/darwin64-x86_64-cc \
-    /usr/local/include/node/openssl/archs/linux-aarch64 \
-    /usr/local/include/node/openssl/archs/linux-armv4 \
-    /usr/local/include/node/openssl/archs/linux-elf \
-    /usr/local/include/node/openssl/archs/linux-ppc64le \
-    /usr/local/include/node/openssl/archs/linux32-s390x \
-    /usr/local/include/node/openssl/archs/linux64-s390x \
-    /usr/local/include/node/openssl/archs/solaris-x86-gcc \
-    /usr/local/include/node/openssl/archs/solaris64-x86_64-gcc \
     # deleted symlinks
     /usr/local/bin/npx \
     /usr/local/bin/npm \
