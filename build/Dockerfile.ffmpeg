@@ -3,4 +3,4 @@ ARG VERSION
 FROM dzek69/nodemin:${VERSION}-node
 
 RUN echo "Hi" && \
-    apk add --no-cache ffmpeg
+    apk add --no-cache ffmpeg imagemagick

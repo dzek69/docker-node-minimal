@@ -1,6 +1,6 @@
 # docker-node-minimal
 
-Ultra small docker images producer with node support. Optionally add ffmpeg and yt-dlp.
+Ultra small docker images producer with node support. Optionally add ffmpeg+imagick and yt-dlp.
 
 > These stats are for 12.2.0 version, see: https://hub.docker.com/r/dzek69/nodemin/tags
 > They may be both smaller or bigger depending on the node/ffmpeg/yt-dlp version
@@ -78,8 +78,7 @@ docker run -e NODE_VERSION=19.2.0 -e VERSION=19.2.0 -e MODULE=youtube -v /var/ru
 
 - `MODULE` is one of three values: `node`, `ffmpeg`, `youtube`.
     - `node` uses `node-alpine` image and just strips all not-needed-to-run-node-app files
-    - `ffmpeg` uses image built with `MODULE=node` and adds pre-build ffmpeg to that (currently uses mirrored `ffmpeg`
-       as official is terribly slow to download, at least from my location)
+    - `ffmpeg` uses image built with `MODULE=node` and adds pre-build ffmpeg and imagick to that
     - `youtube` uses image built with `MODULE=ffmpeg` and adds `yt-dlp` (and `python` required by `yt-dlp`)
 
 - `SQUASH` if set to any value - built image will be squashed. Use only for `node` to save disk space if multiple
